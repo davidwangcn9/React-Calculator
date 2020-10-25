@@ -42,7 +42,7 @@ export class Calculator extends React.Component {
                 operator: null,
                 display: '0',
             })
-        } else if (name !== "=") {
+        } else if (name !== "=" && this.state.numberB === '0') {
             this.setState({operator: name});
         } else {
             let calValue = 0;
@@ -63,9 +63,9 @@ export class Calculator extends React.Component {
                     break;
             }
             this.setState({
-                numberA: '0',
+                numberA: (name !== "=" && this.state.numberA !== '0' && this.state.numberB !== '0') ? calValue : '0',
                 numberB: '0',
-                operator: null,
+                operator: (name !== "=" && this.state.numberA !== '0' && this.state.numberB !== '0') ? name : null,
                 display: calValue
             })
         }
